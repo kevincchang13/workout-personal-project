@@ -11,6 +11,7 @@ class MultiCheckField(SelectMultipleField):
 class ExerciseForm(FlaskForm):
 	name = StringField('name', validators=[DataRequired()])
 	description = StringField('description', widget=TextArea())
+	bodyparts = MultiCheckField('BodyParts', coerce=int)
 
 	def set_choices(self):
 		self.bodyparts.choices=[(bp.id, bp.name) for bp in BodyPart.query.all()]

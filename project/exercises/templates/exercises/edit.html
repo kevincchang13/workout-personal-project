@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<form action='{{url_for("exercises.show", id=exercise.id)}}?_method=PATCH' method = 'POST'>
+	{{form.csrf_token}}
+	<p>
+		{{form.name.label}}
+		{{form.name(value=exercise.name)}}
+		<span>
+			{% if form.name.errors %}
+				{% for error in form.name.errors %}
+					{{error}}
+				{% endfor %}
+			{% endif %}
+		</span>
+	</p>
+	<p>
+		{{form.description.label}}
+		{{form.description()}}
+		<span>
+			{% if form.description.errors %}
+				{% for error in form.description.errors %}
+					{{error}}
+				{% endfor %}
+			{% endif %}
+		</span>
+	</p>
+	<p>
+		{{form.bodyparts}}
+	</p>
+	<input type = 'submit' value = 'Add Exercise'>
+</form>
+
+{% endblock %}

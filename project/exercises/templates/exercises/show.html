@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{exercise.name}}</h1>
+
+<p>{{exercise.description}}</p>
+<br>
+
+<p>Workouts out:</p>
+<ul>
+{% if exercise.bodyparts %}
+	{% for bodypart in exercise.bodyparts %}
+		<li><a href="url_for('bodyparts.show', id=bodypart.id)}}">{{bodypart.name}}</a></li>
+	{% endfor %}
+{% endif %}
+</ul>
+
+{% endblock %}
