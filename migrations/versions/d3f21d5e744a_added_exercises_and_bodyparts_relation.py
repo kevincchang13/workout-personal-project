@@ -1,8 +1,8 @@
-"""empty message
+"""Added exercises and bodyparts relation
 
-Revision ID: dd2bc21baaf8
+Revision ID: d3f21d5e744a
 Revises: 
-Create Date: 2017-09-02 23:32:38.007020
+Create Date: 2017-09-05 08:58:00.376750
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'dd2bc21baaf8'
+revision = 'd3f21d5e744a'
 down_revision = None
 branch_labels = None
 depends_on = None

@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 
+{% block title %} Exercises {% endblock %}
+
 {% block content %}
+
+<a href='{{url_for("exercises.new")}}' class='btn btn-primary'>Add Exercise</a>
+<br>
+<br>
 
 {% for exercise in exercises %}
 

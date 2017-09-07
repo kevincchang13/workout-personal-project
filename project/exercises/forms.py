@@ -15,6 +15,3 @@ class ExerciseForm(FlaskForm):
 
 	def set_choices(self):
 		self.bodyparts.choices=[(bp.id, bp.name) for bp in BodyPart.query.all()]
-
-class DeleteForm(FlaskForm):
-	pass

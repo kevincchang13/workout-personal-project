@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{bodypart.name}}</h1>
+<br>
+
+<p>Here are a list of workouts that focus on this bodypart:</p>
+<ul>
+{% if bodypart.exercises %}
+	{% for exercise in bodypart.exercises %}
+		<li><a href='{{url_for("exercises.show", id=exercise.id)}}'>{{exercise.name}}</a></li>
+	{% endfor %}
+{% else %}
+	None.
+{% endif %}
+</ul>
+<br>
+
+<a href='{{url_for("bodyparts.edit", id=bodypart.id)}}' class='btn btn-info'>Edit BodyPart</a>
+
+
+{% endblock %}

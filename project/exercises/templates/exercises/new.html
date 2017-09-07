@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% block title %} Create Exercise {% endblock %}
 
 {% block content %}
 
@@ -27,6 +28,8 @@
 			{% endif %}
 		</span>
 	</p>
+	<br>
+	<p>Select which bodyparts are focused with this exercise: </p>
 	<p>
 		{{form.bodyparts}}
 	</p>

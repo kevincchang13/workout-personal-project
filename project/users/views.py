@@ -18,6 +18,7 @@ def login():
 				flash('You successfully logged in!', 'alert-success')
 				return redirect(url_for('exercises.index'))
 		flash('Invalid credentials.', 'alert-warning')
+		return redirect(url_for('root'))
 
 
 @users_blueprint.route('/signup', methods=["GET", "POST"])
@@ -49,25 +50,25 @@ def logout():
 
 
 
+# @users_blueprint.route('/<int:id>/edit')
+# def edit(id):
+# 	form =
 
 
 
+# @users_blueprint.route('/', methods = ["GET", "POST"])
+# def index():
+# 	pass
 
-@users_blueprint.route('/', methods = ["GET", "POST"])
-def index():
-	pass
+# @users_blueprint.route('/new')
+# def new():
+# 	pass
 
-@users_blueprint.route('/new')
-def new():
-	pass
+# @users_blueprint.route('/<int:id>', methods=['GET', 'PATCH'])
+# def show(id):
+# 	pass
 
-@users_blueprint.route('/<int:id>', methods=['GET', 'PATCH'])
-def show(id):
-	pass
 
-@users_blueprint.route('/<int:id>/edit')
-def edit(id):
-	pass
 
 
 @users_blueprint.errorhandler(404)

@@ -9,9 +9,8 @@ class MultiCheckField(SelectMultipleField):
 
 class BodyPartForm(FlaskForm):
 	name = StringField('name', validators=[DataRequired()])
+	exercises = MultiCheckField('Exercises', coerce=int)
+
 
 	def set_choices(self):
 		self.exercises.choices=[(e.id, e.name) for e in Exercise.query.all()]
-
-class DeleteForm(FlaskForm):
-	pass

@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, g
 from flask_sqlalchemy import SQLAlchemy
 from flask_modus import Modus
 from flask_bcrypt import Bcrypt
 import os
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
+from flask_wtf.csrf import CSRFProtect
 
 app = Flask(__name__)
 modus = Modus(app)
@@ -12,6 +13,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = 'postgres://localhost/workouts'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db=SQLAlchemy(app)
 app.config['SECRET_KEY']=os.environ.get('SECRET_KEY')
+csrf = CSRFProtect(app)
 
 from project.models import User
 
@@ -19,6 +21,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view='root'
 login_manager.login_message='Please log in.'
+login_manager.login_message_category='alert-warning'
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -36,13 +39,20 @@ app.register_blueprint(users_blueprint, url_prefix='/users')
 
 from project.users.forms import LoginForm, SignUpForm
 
+from project.models import Exercise
+
 @app.route('/')
 def root():
-	login_form = LoginForm(request.form)
-	signup_form = SignUpForm(request.form)
-	return render_template('home.html', login_form=login_form, signup_form=signup_form)
+	return render_template('home.html')
 
 @app.route('/about')
 def about():
-	form = LoginForm(request.form)
-	return render_template('about.html', form=form)
+	return render_template('about.html')
+
+@app.before_request
+def login_signup_form():
+	if not current_user.is_authenticated:
+		g.login_form=LoginForm()
+		g.signup_form=SignUpForm()
+
+

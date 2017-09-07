@@ -1,5 +1,38 @@
 {% extends 'base.html' %}
 
+{% block title %} Motivation {% endblock %}
+
 {% block content %}
-<p>Hello World</p>
+<script src="{{url_for('static', filename='js/slot.js')}}"></script>
+
+<div class='parallax1'></div>
+<div>
+	<div class='caption'>
+		<span class='border'>Are you motiv8d?</span>
+	</div>
+</div>
+<div class='parallax2'>
+</div>
+	<div style="color:#fff;background-color:#111;padding:50px;">
+		<h3 style="text-align:center;">Get started below</span>
+	</div>
+
+<div class='slots-div'>
+	<div style="width:950px">
+	<div class="slots"  id="slots_a">
+		<div class="wrapper" ></div>
+	</div>
+	<div class="slots"  id="slots_b">
+		<div class="wrapper" ></div>
+	</div>
+	<div class="slots"  id="slots_c">
+		<div class="wrapper" ></div>
+	</div>
+	<div style="text-align:center">
+	<input type="button" value="spin!" onClick="go();" style="margin-top:4px;">
+	</div>
+	</div>
+</div>
+
 {% endblock %}
+
