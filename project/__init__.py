@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, g
+from flask import Flask, render_template, g
 from flask_sqlalchemy import SQLAlchemy
 from flask_modus import Modus
 from flask_bcrypt import Bcrypt
@@ -39,7 +39,6 @@ app.register_blueprint(users_blueprint, url_prefix='/users')
 
 from project.users.forms import LoginForm, SignUpForm
 
-from project.models import Exercise
 
 @app.route('/')
 def root():

@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect, request, url_for, flash
 from project.models import User
 from project import db
 from sqlalchemy.exc import IntegrityError
-from project.users.forms import LoginForm, SignUpForm
+from project.users.forms import LoginForm, SignUpForm, EditUserForm
 from flask_login import logout_user, login_user, current_user
 
 users_blueprint = Blueprint('users', __name__, template_folder='templates')
@@ -19,6 +19,7 @@ def login():
 				return redirect(url_for('exercises.index'))
 		flash('Invalid credentials.', 'alert-warning')
 		return redirect(url_for('root'))
+	return redirect(url_for('root'))
 
 
 @users_blueprint.route('/signup', methods=["GET", "POST"])
@@ -39,6 +40,7 @@ def signup():
 			return redirect(url_for('exercises.index'))
 		flash('Invalid submission. Please try again.', 'alert-warning')
 		return redirect(url_for('root'))
+	return redirect(url_for('root'))
 
 
 
@@ -50,10 +52,29 @@ def logout():
 
 
 
-# @users_blueprint.route('/<int:id>/edit')
-# def edit(id):
-# 	form =
+@users_blueprint.route('/<int:id>/edit')
+def edit(id):
+	user = User.query.get_or_404(id)
+	form = EditUserForm(user=user)
+	return render_template("users/edit.html", form=form, user=user)
 
+
+@users_blueprint.route('/<int:id>', methods =['GET', 'PATCH'])
+def show(id):
+	user=User.query.get_or_404(id)
+	form = EditUserForm(request.form)
+	if request.method == b'PATCH':
+		if form.validate():
+			user.username = form.username.data
+			user.email = form.email.data
+			db.session.add(user)
+			db.session.commit()
+			flash('Successfully Edited Profile', 'alert-success')
+			return redirect(url_for('users.edit', id=user.id))
+		else:
+			flash('Invalid submission.', 'alert-warning')
+			return render_template('users/edit.html', form=form, user=user)
+	return render_template('users/show.html')
 
 
 # @users_blueprint.route('/', methods = ["GET", "POST"])

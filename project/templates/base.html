@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'css/style.css')}}">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel='shortcut icon' href='https://s-media-cache-ak0.pinimg.com/originals/86/f5/d9/86f5d99e1e42ce75266b260ebd804955.jpg'>
 </head>
 <body class="{% block body %} {% endblock %}">
 
@@ -20,16 +21,16 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#">Workout</a></li>
+        <li><a href="{{url_for('users.show', id=current_user.id)}}">Workout</a></li>
         <li class="active"><a href="{{url_for('exercises.index')}}">Exercises <span class="sr-only">(current)</span></a></li>
       </ul>
 
     <!-- Profile Dropdown -->
       <ul class="nav navbar-nav navbar-right">
       <li class = 'dropdown'>
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Account</b> <span class="caret"></span></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>{{current_user.username}}</b> <span class="caret"></span></a>
         <ul class='dropdown-menu'>
-          <li>Edit Profile</li>
+          <li><a href="{{url_for('users.edit', id=current_user.id)}}">Edit Profile</a></li>
           <li><a href="{{url_for('users.logout')}}">Logout</a></li>
         </ul>
       </li>
@@ -127,6 +128,13 @@
 	{% block content %}
 	{% endblock %}
 
+<div class="footerfix"></div>
+<footer class='navbar navbar-fixed-bottom'>
+  <div class='container'>
+    <span><img src="https://idesigni.co.uk/wp-content/uploads/2014/09/copyright-e1412084239201.png" style="height:20px;width:20px;">2017 Motiv8 Inc.</span>
+  </div>
+</footer>
+
 <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -136,5 +144,6 @@
   integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
   crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="{{url_for('static', filename='js/slot.js')}}"> </script>
 </body>
 </html>

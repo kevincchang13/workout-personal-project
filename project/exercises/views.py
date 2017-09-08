@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, request, url_for
+from flask import Blueprint, render_template, redirect, request, url_for, jsonify
 from project.models import Exercise, BodyPart
 from project.exercises.forms import ExerciseForm
 from project import db
@@ -60,6 +60,12 @@ def edit(id):
 	form.set_choices()
 	form.description.data = exercise.description
 	return render_template('exercises/edit.html', form=form, exercise=exercise)
+
+
+@exercises_blueprint.route('/all')
+def all():
+	exercises=[exercise.name for exercise in Exercise.query.all()]
+	return jsonify(exercises)
 
 @exercises_blueprint.errorhandler(404)
 def page_not_found(e):
