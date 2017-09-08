@@ -47,9 +47,6 @@ from project.users.forms import LoginForm, SignUpForm
 def root():
 	return render_template('home.html')
 
-@app.route('/about')
-def about():
-	return render_template('about.html')
 
 @app.before_request
 def login_signup_form():

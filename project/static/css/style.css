@@ -43,14 +43,11 @@ textarea {
 }
 
 .parallax1 {
-    /* The image used */
     background-image: url("https://i.ytimg.com/vi/veQhCG8z1dk/maxresdefault.jpg");
-
-    /* Set a specific height */
     height: 700px;
-    width:100%;
+    max-width: 100%;
 
-    /* Create the parallax scrolling effect */
+
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -58,15 +55,10 @@ textarea {
 }
 
 .parallax2 {
-    /* The image used */
     background-image: url("https://zlprod.azureedge.net/zliving/zliving/media/zliving/fitness/weight-loss/articles/1076x616/1076x615-weight-loss-success-is-mind-over-matter.jpg?ext=.jpg");
-
-
-    /* Set a specific height */
     height: 500px;
-    width:100%;
+    max-width: 100%;
 
-    /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -74,17 +66,13 @@ textarea {
 }
 
 .parallax3 {
-    /* The image used */
     background-image: url("https://cdn.wallpapersafari.com/80/58/pjag6t.jpg");
-
-
-	margin: 0 auto;
-    padding: 190px 0;
-    /* Set a specific height */
     height: 900px;
-    width:100%;
+    max-width:100%;
 
-    /* Create the parallax scrolling effect */
+	  margin: 0 auto;
+    padding: 190px 0;
+
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -117,7 +105,7 @@ textarea {
 }
 
 .slots {
-	font-size:30px;
+	font-size:2em;
 	font-family:arial,helvetica,sans-serif;
 	overflow:hidden;
 	width:400px;
@@ -192,3 +180,4 @@ footer{
   text-align: left;
   background-color: white;
 }
+

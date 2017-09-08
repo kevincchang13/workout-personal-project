@@ -37,7 +37,7 @@ def show(id):
 	exercise = Exercise.query.get_or_404(id)
 	form = ExerciseForm(request.form)
 	form.set_choices()
-	if request.method == "PATCH":
+	if request.method == b"PATCH":
 		if form.validate():
 			exercise.name = form.name.data
 			exercise.description = form.description.data
@@ -46,7 +46,7 @@ def show(id):
 				exercise.bodyparts.append(BodyPart.query.get_or_404(bodypart))
 			db.session.add(exercise)
 			db.session.commit()
-			return redirect(url_for('messages.index'))
+			return redirect(url_for('exercises.index'))
 		else:
 			return render_template('exercises/edit.html', form=form, exercise=exercise)
 	return render_template('exercises/show.html', exercise = exercise)
