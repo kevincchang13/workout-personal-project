@@ -3,9 +3,19 @@ from project.models import User
 from project import db
 from sqlalchemy.exc import IntegrityError
 from project.users.forms import LoginForm, SignUpForm, EditUserForm
-from flask_login import logout_user, login_user, current_user
+from flask_login import logout_user, login_user, current_user, login_required
+from functools import wraps
 
 users_blueprint = Blueprint('users', __name__, template_folder='templates')
+
+def ensure_correct_user(fn):
+	@wraps(fn)
+	def wrapper(*args, **kwargs):
+		if kwargs.get('id') != current_user.id:
+			flash('Not Authorized', 'alert-warning')
+			return redirect(url_for('exercises.index'))
+		return fn(*args, **kwargs)
+	return wrapper
 
 @users_blueprint.route('/login', methods=["GET","POST"])
 def login():
@@ -45,6 +55,7 @@ def signup():
 
 
 @users_blueprint.route('/logout')
+@login_required
 def logout():
 	logout_user()
 	flash('You have been signed out.', 'alert-success')
@@ -53,6 +64,8 @@ def logout():
 
 
 @users_blueprint.route('/<int:id>/edit')
+@login_required
+@ensure_correct_user
 def edit(id):
 	user = User.query.get_or_404(id)
 	form = EditUserForm(user=user)
@@ -60,6 +73,7 @@ def edit(id):
 
 
 @users_blueprint.route('/<int:id>', methods =['GET', 'PATCH'])
+@login_required
 def show(id):
 	user=User.query.get_or_404(id)
 	form = EditUserForm(request.form)
