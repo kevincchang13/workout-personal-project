@@ -47,7 +47,6 @@ textarea {
     height: 700px;
     max-width: 100%;
 
-
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -99,7 +98,7 @@ textarea {
 .caption {
 	position: absolute;
 	left: 0;
-	top:50%;
+	top:60%;
 	width:100%;
 	text-align:center;
 }
@@ -181,3 +180,32 @@ footer{
   background-color: white;
 }
 
+@font-face {
+  font-family: MarckScript;
+  src: url(https://fonts.google.com/specimen/Marck+Script);
+}
+@font-face {
+  font-family: 'Lobster Two', cursive;
+  src: url(https://fonts.googleapis.com/css?family=Lobster+Two);
+}
+@font-face {
+    font-family: 'Abril Fatface', cursive;
+    src: url(https://fonts.googleapis.com/css?family=Abril+Fatface);
+}
+@font-face {
+  font-family: 'Damion', cursive;
+  src: url(https://fonts.googleapis.com/css?family=Damion);
+}
+
+
+.exercise:hover {
+  font-family: 'Damion', cursive;
+  font-size: 50px;
+}
+
+.icon {
+/*  src: url(https://i.pinimg.com/originals/86/f5/d9/86f5d99e1e42ce75266b260ebd804955.jpg);*/
+  /*padding: 15px;*/
+  height:60px;
+  width: auto;
+}

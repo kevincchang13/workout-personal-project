@@ -10,7 +10,7 @@
 
 {% for exercise in exercises %}
 
-	<p><a href="{{url_for('exercises.show', id=exercise.id)}}">{{exercise.name}}</a></p>
+	<p><a href="{{url_for('exercises.show', id=exercise.id)}}"  class='exercise'>{{exercise.name}}</a></p>
 
 {% endfor %}
 

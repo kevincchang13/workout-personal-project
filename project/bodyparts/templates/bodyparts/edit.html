@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<a href="{{url_for('bodyparts.show', id=bodypart.id)}}"><- Back to {{bodypart.name}}</a>
+<br>
+<br>
 
 <form action="{{url_for('bodyparts.show', id=bodypart.id)}}?_method=PATCH" method = 'POST'>
 	{{form.csrf_token}}

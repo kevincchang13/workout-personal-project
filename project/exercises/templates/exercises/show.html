@@ -3,10 +3,13 @@
 {% block title %} {{exercise.name}} {% endblock %}
 
 {% block content %}
+<div id='content'>
+<a href="{{url_for('exercises.index')}}"><- Back to Exercises</a>
+<br>
 
 <h1>{{exercise.name}}</h1>
 
-<p>{{exercise.description}}</p>
+<p style="font-family: 'Abril Fatface';font-size:20px">{{exercise.description}}</p>
 <br>
 
 <p>Workouts out:</p>
@@ -23,5 +26,5 @@
 <br>
 
 <a href='{{url_for("exercises.edit", id=exercise.id)}}' class='btn btn-info'>Edit Exercise</a>
-
+</div>
 {% endblock %}

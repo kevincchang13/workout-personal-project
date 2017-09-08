@@ -4,26 +4,26 @@
 	<meta charset="UTF-8">
 	<title>{% block title %} {% endblock %}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'css/style.css')}}">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'css/style.css')}}">
   <link rel='shortcut icon' href='https://s-media-cache-ak0.pinimg.com/originals/86/f5/d9/86f5d99e1e42ce75266b260ebd804955.jpg'>
 </head>
 <body class="{% block body %} {% endblock %}">
-
 {% if current_user.is_authenticated %}
   <nav class="navbar navbar-inverse" id='navbar'>
     <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="{{url_for('root')}}">Motiv8tion</a>
-    </div>
+      <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="{{url_for('root')}}" class='navbar-left'><img src='https://i.pinimg.com/originals/86/f5/d9/86f5d99e1e42ce75266b260ebd804955.jpg' class="icon"></a>
+        <a class="navbar-brand" href="{{url_for('root')}}">Motiv8tion</a>
+      </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -41,17 +41,22 @@
           <li><a href="{{url_for('users.logout')}}">Logout</a></li>
         </ul>
       </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 {% else %}
       <nav class="navbar navbar-inverse" id='navbar'>
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+          <a href="{{url_for('root')}}" class='navbar-left'><img src='https://i.pinimg.com/originals/86/f5/d9/86f5d99e1e42ce75266b260ebd804955.jpg' class="icon"></a>
           <a class="navbar-brand" href="{{url_for('root')}}">Motiv8tion</a>
         </div>
 
@@ -126,6 +131,7 @@
 </nav>
 
 
+
 {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
     {% for category, message in messages %}
@@ -138,12 +144,14 @@
 	{% block content %}
 	{% endblock %}
 
-<div class="footerfix"></div>
+<div class="footer"></div>
 <footer class='navbar navbar-fixed-bottom'>
   <div class='container'>
     <span><img src="https://idesigni.co.uk/wp-content/uploads/2014/09/copyright-e1412084239201.png" style="height:20px;width:20px;">2017 Motiv8tion Inc.</span>
   </div>
 </footer>
+
+
 
 <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"

@@ -3,6 +3,9 @@
 {% block title %} Edit Exercise {% endblock %}
 
 {% block content %}
+<a href="{{url_for('exercises.show', id=exercise.id)}}"><- Back to {{exercise.name}}</a>
+<br>
+<br>
 
 <form action='{{url_for("exercises.show", id=exercise.id)}}?_method=PATCH' method = 'POST'>
 	{{form.csrf_token}}

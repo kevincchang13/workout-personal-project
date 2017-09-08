@@ -6,15 +6,9 @@ from flask_login import login_required
 
 bodyparts_blueprint = Blueprint('bodyparts', __name__, template_folder='templates')
 
-# @bodyparts_blueprint.route('/', methods = ["GET", "POST"])
-# @login_required
-# def index():
-# 	pass
-
-@bodyparts_blueprint.route('/new', methods=["GET", "POST"])
+@bodyparts_blueprint.route('/', methods = ["GET", "POST"])
 @login_required
-def new():
-
+def index():
 	form = BodyPartForm(request.form)
 	form.set_choices()
 	if request.method =='POST':
@@ -25,6 +19,16 @@ def new():
 			db.session.add(bodypart)
 			db.session.commit()
 			return redirect(url_for('bodyparts.show', id=bodypart.id))
+		else:
+			return render_template('bodyparts/new.html', form=form)
+	return render_template('bodyparts/new.html', form=form)
+
+
+@bodyparts_blueprint.route('/new')
+@login_required
+def new():
+	form = BodyPartForm(request.form)
+	form.set_choices()
 	return render_template('bodyparts/new.html', form=form)
 
 @bodyparts_blueprint.route('/<int:id>', methods=['GET', 'PATCH'])

@@ -3,6 +3,9 @@
 {% block title %} Create Exercise {% endblock %}
 
 {% block content %}
+<a href="{{url_for('exercises.index')}}"><- Back to Exercises</a>
+<br>
+<br>
 
 <form action='{{url_for("exercises.index")}}' method = 'POST'>
 	{{form.csrf_token}}
