@@ -7,13 +7,16 @@ from flask_login import LoginManager, current_user
 from flask_wtf.csrf import CSRFProtect
 
 app = Flask(__name__)
+if os.environ.get('ENV') == 'production':
+	app.config.from_object('config.ProductionConfig')
+else:
+	app.config.from_object('config.DevelopmentConfig')
 modus = Modus(app)
 bcrypt = Bcrypt(app)
-app.config["SQLALCHEMY_DATABASE_URI"] = 'postgres://localhost/workouts'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db=SQLAlchemy(app)
 app.config['SECRET_KEY']=os.environ.get('SECRET_KEY')
 csrf = CSRFProtect(app)
+
 
 from project.models import User
 
@@ -53,5 +56,3 @@ def login_signup_form():
 	if not current_user.is_authenticated:
 		g.login_form=LoginForm()
 		g.signup_form=SignUpForm()
-
-
